@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tip_Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,98 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Total (Post-tax)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78N-Ws-Mv7">
+                                <rect key="frame" x="50" y="71" width="145" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tax Percentage (6%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kej-Xf-PLg">
+                                <rect key="frame" x="40" y="144" width="158" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="be3-JY-BpP">
+                                <rect key="frame" x="238" y="67" width="292" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0t-Rg-T74">
+                                <rect key="frame" x="254" y="214" width="93" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="jxQ-sh-ca3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Calculate"/>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="ola-95-IG8">
+                                <rect key="frame" x="246" y="140" width="316" height="31"/>
+                                <connections>
+                                    <action selector="SliderTaxPercent:" destination="BYZ-38-t0r" eventType="valueChanged" id="Y7N-3Q-2O4"/>
+                                </connections>
+                            </slider>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AO0-ki-dso">
+                                <rect key="frame" x="161" y="288" width="279" height="199"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="279" id="IX4-zK-W4N"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell" textLabel="PBS-CH-f8t" style="IBUITableViewCellStyleDefault" id="lE6-9F-VxA">
+                                        <rect key="frame" x="0.0" y="28" width="279" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lE6-9F-VxA" id="NhB-XC-Uod">
+                                            <rect key="frame" x="0.0" y="0.0" width="279" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PBS-CH-f8t">
+                                                    <rect key="frame" x="15" y="0.0" width="249" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="eSI-7T-bHP"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="6h4-3A-gQX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ola-95-IG8" firstAttribute="leading" secondItem="Kej-Xf-PLg" secondAttribute="trailing" constant="50" id="104-wh-Oks"/>
+                            <constraint firstItem="AO0-ki-dso" firstAttribute="top" secondItem="Z0t-Rg-T74" secondAttribute="bottom" constant="38" id="1AT-6h-oKS"/>
+                            <constraint firstItem="Kej-Xf-PLg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="2pG-9j-CuS"/>
+                            <constraint firstItem="Z0t-Rg-T74" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2yh-yt-jNZ"/>
+                            <constraint firstItem="ola-95-IG8" firstAttribute="top" secondItem="be3-JY-BpP" secondAttribute="bottom" constant="43" id="FeG-T3-dWs"/>
+                            <constraint firstItem="Kej-Xf-PLg" firstAttribute="top" secondItem="be3-JY-BpP" secondAttribute="bottom" constant="47" id="Gyf-au-Mhu"/>
+                            <constraint firstItem="Z0t-Rg-T74" firstAttribute="centerX" secondItem="AO0-ki-dso" secondAttribute="centerX" id="RSg-xf-unf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="be3-JY-BpP" secondAttribute="trailing" constant="50" id="Uxa-qe-DNN"/>
+                            <constraint firstItem="be3-JY-BpP" firstAttribute="leading" secondItem="78N-Ws-Mv7" secondAttribute="trailing" constant="43" id="Vc4-dJ-DWl"/>
+                            <constraint firstItem="be3-JY-BpP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="47" id="asw-vG-yZL"/>
+                            <constraint firstItem="Z0t-Rg-T74" firstAttribute="top" secondItem="ola-95-IG8" secondAttribute="bottom" constant="44" id="db4-gS-oCa"/>
+                            <constraint firstItem="78N-Ws-Mv7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="uFj-az-r0A"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ola-95-IG8" secondAttribute="trailing" constant="20" id="vnd-Vm-Tb4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AO0-ki-dso" secondAttribute="bottom" constant="113" id="wS7-l8-AJX"/>
+                            <constraint firstItem="78N-Ws-Mv7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="51" id="xlq-xS-rNN"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="BillText" destination="be3-JY-BpP" id="5FW-1v-iiA"/>
+                        <outlet property="TaxPercentageLabel" destination="Kej-Xf-PLg" id="caI-uK-GJ3"/>
+                        <outlet property="TaxSlider" destination="ola-95-IG8" id="Oaa-yS-sd3"/>
+                        <outlet property="tableView" destination="AO0-ki-dso" id="sOk-RL-bAu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="245" y="306"/>
         </scene>
     </scenes>
 </document>
